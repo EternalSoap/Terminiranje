@@ -1,0 +1,50 @@
+﻿<Window x:Class="Terminiranje.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        mc:Ignorable="d ignore"
+        Height="602"
+        Width="800"
+        Title="Terminiranje"
+        DataContext="{Binding Main, Source={StaticResource Locator}}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Left" Height="592" Margin="0,0,0,-21" VerticalAlignment="Top" Width="790">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Unos podataka :" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.263,0.577" Height="33" Width="109"/>
+        <GridSplitter HorizontalAlignment="Left" Height="572" Margin="200,0,0,0" VerticalAlignment="Top" Width="4"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="50,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Job" Text="{Binding Job, Mode=TwoWay}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="50,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.1,0.348" ToolTip="Trajanje" Text="{Binding Trajanje, Mode=TwoWay}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="50,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Rok" Text="{Binding Rok, Mode=TwoWay}"/>
+        <Button Content="Dodaj u tablicu" HorizontalAlignment="Left" Margin="50,248,0,0" VerticalAlignment="Top" Width="120" Height="20" Command="{Binding addToTable }"/>
+        <CheckBox Content="FCFS" HorizontalAlignment="Left" Margin="50,353,0,0" VerticalAlignment="Top" Height="15" Width="71" Command="{Binding setTablesToDraw0}" x:Name="FCFS"/>
+        <CheckBox Content="DDATE" HorizontalAlignment="Left" Margin="50,387,0,0" VerticalAlignment="Top" Height="15" Width="71" Command="{Binding setTablesToDraw1 }" x:Name="DDATE"/>
+        <CheckBox Content="SLACK" HorizontalAlignment="Left" Margin="50,426,0,0" VerticalAlignment="Top" Height="15" Width="71" Command="{Binding setTablesToDraw2}" x:Name="SLACK"/>
+        <CheckBox Content="CR" HorizontalAlignment="Left" Margin="50,461,0,0" VerticalAlignment="Top" Height="15" Width="71" Command="{Binding setTablesToDraw3}" x:Name="CR"/>
+        <CheckBox Content="SPT" HorizontalAlignment="Left" Margin="50,496,0,0" VerticalAlignment="Top" Height="15" Width="71" Command="{Binding setTablesToDraw4}" x:Name="SPT"/>
+        <Label Content="Opcije :" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Width="109"/>
+        <ListView HorizontalAlignment="Left" Height="572" Margin="209,0,0,0" VerticalAlignment="Top" Width="581" ItemsSource="{Binding list}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="190" DisplayMemberBinding="{Binding Job}" Header="Job"/>
+                    <GridViewColumn Width="190" DisplayMemberBinding="{Binding Trajanje}" Header="Trajanje"/>
+                    <GridViewColumn Width="190" DisplayMemberBinding="{Binding Rok}" Header="Rok"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Prikazi tablice" HorizontalAlignment="Left" Margin="50,530,0,0" VerticalAlignment="Top" Width="120" Command="{Binding addView}"/>
+    </Grid>
+</Window>
